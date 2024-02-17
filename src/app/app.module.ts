@@ -1,4 +1,4 @@
-import {NgModule, Provider} from '@angular/core';
+import {NgModule, Provider, isDevMode} from '@angular/core';
 import {registerLocaleData} from "@angular/common";
 import uzLatin from "@angular/common/locales/uz-Latn";
 
@@ -12,6 +12,7 @@ import {PostComponent} from './shared/components/post/post.component';
 import {SharedModule} from "./shared/shared.module";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth.interceptor";
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 registerLocaleData(uzLatin, 'uz');
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -32,7 +33,11 @@ const INTERCEPTOR_PROVIDER: Provider = {
   imports: [
     BrowserModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

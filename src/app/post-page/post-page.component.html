@@ -1,13 +1,18 @@
-<div class="post">
-  <div class="header">
-    <h1>Post Title</h1>
-    <button [routerLink]="['/']" class="btn btn-link">Go Back</button>
-  </div>
-  <div class="info">
-    <strong>Sukhrobbek Odilov</strong>
-    <small>14.02.2024</small>
-  </div>
-  <div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid aperiam illum rerum sit.</p>
+<div *ngIf="post$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{post.title}}</h1>
+      <button [routerLink]="['/']" class="btn btn-link">Go Back</button>
+    </div>
+    <div class="info">
+      <strong>{{post.author}}</strong>
+      <small>{{post.date | date: 'medium': '' : 'uz'}}</small>
+    </div>
+    <div>
+      <p>{{post.text}}</p>
+    </div>
   </div>
 </div>
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
