@@ -12,6 +12,8 @@ import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
 import {SearchPipe} from "./search.pipe";
 import {BrowserModule} from "@angular/platform-browser";
+import { AlertComponent } from './shared/components/alert/alert.component';
+import {AlertService} from "./shared/services/alert.service";
 
 const routes: Routes = [
   {
@@ -32,7 +34,8 @@ const routes: Routes = [
     DashboardComponent,
     CreatePageComponent,
     EditPageComponent,
-    SearchPipe
+    SearchPipe,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard, AlertService]
 })
 export class AdminModule {
 }

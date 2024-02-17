@@ -1,6 +1,8 @@
 import {NgModule, Provider} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {registerLocaleData} from "@angular/common";
+import uzLatin from "@angular/common/locales/uz-Latn";
 
+import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
@@ -11,6 +13,7 @@ import {SharedModule} from "./shared/shared.module";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth.interceptor";
 
+registerLocaleData(uzLatin, 'uz');
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,

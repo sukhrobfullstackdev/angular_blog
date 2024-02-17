@@ -1,6 +1,6 @@
 <div *ngIf="posts.length; else loading">
   <div class="form-control">
-    <input type="text" placeholder="Search a post..." id="searchStr" name="searchStr"  [(ngModel)]="searchString">
+    <input type="text" placeholder="Search a post..." id="searchStr" name="searchStr" [(ngModel)]="searchString">
   </div>
   <table>
     <thead>
@@ -17,7 +17,7 @@
       <td>{{idx + 1}}</td>
       <td>{{post?.author}}</td>
       <td>{{post?.name}}</td>
-      <td>{{post?.date | date: 'medium'}}</td>
+      <td>{{post?.date | date: 'medium':'':'uz'}}</td>
       <td>
         <button class="btn btn-link open" [routerLink]="['/admin', 'edit-post', post?.id]">Show more</button>
         <button class="btn btn-link" (click)="delete(post?.id)">Delete</button>

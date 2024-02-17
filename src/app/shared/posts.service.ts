@@ -48,4 +48,12 @@ export class PostsService {
       })
     );
   }
+
+  update(post: Post): Observable<Post> {
+    return this.http.put<Post>(`${environment.firebaseDB}/posts/${post.id}.json`, post).pipe(
+      map((post: Post) => {
+        return {...post, id: post.id || '', date: post.date};
+      })
+    );
+  }
 }
