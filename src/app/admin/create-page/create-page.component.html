@@ -1,1 +1,31 @@
-<p>create-page works!</p>
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Creating new post</h1>
+  <div class="form-control" [ngClass]="{invalid: form.get('title')?.touched && form.get('title')?.invalid}">
+    <label for="title">Email:</label>
+    <input type="text" id="title" name="title" formControlName="title">
+    <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="validation">
+      <small *ngIf="form.get('title') && form.get('title')?.errors?.['required']">
+        Please, enter the title!
+      </small>
+    </div>
+  </div>
+  <div class="form-control" [ngClass]="{invalid: form.get('text')?.touched && form.get('text')?.invalid}">
+    <label for="text">Text:</label>
+    <input type="text" id="text" name="text" formControlName="text">
+    <div *ngIf="form.get('text')?.touched && form.get('text')?.invalid" class="validation">
+      <small *ngIf="form.get('text') && form.get('text')?.errors?.['required']">
+        Please, enter the text!
+      </small>
+    </div>
+  </div>
+  <div class="form-control" [ngClass]="{invalid: form.get('author')?.touched && form.get('author')?.invalid}">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" formControlName="author">
+    <div *ngIf="form.get('author')?.touched && form.get('author')?.invalid" class="validation">
+      <small *ngIf="form.get('author') && form.get('author')?.errors?.['required']">
+        Please, enter the author!
+      </small>
+    </div>
+  </div>
+  <button [disabled]="form.invalid || loading" type="submit" class="btn btn-block btn-dark">Submit</button>
+</form>

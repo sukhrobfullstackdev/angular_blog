@@ -1,1 +1,31 @@
-<p>dashboard works!</p>
+<div *ngIf="posts.length; else loading">
+  <div class="form-control">
+    <input type="text" placeholder="Search a post..." id="searchStr" name="searchStr"  [(ngModel)]="searchString">
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Author</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of posts | searchField: searchString; let idx = index;">
+      <td>{{idx + 1}}</td>
+      <td>{{post?.author}}</td>
+      <td>{{post?.name}}</td>
+      <td>{{post?.date | date: 'medium'}}</td>
+      <td>
+        <button class="btn btn-link open" [routerLink]="['/admin', 'edit-post', post?.id]">Show more</button>
+        <button class="btn btn-link" (click)="delete(post?.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
